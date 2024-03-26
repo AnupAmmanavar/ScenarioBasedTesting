@@ -10,12 +10,13 @@ class LoginViewModelTest {
     private val loginViewModel = LoginViewModel(loginRepo)
 
     private val ui: LoginUi by lazy { LoginProxyUi(loginViewModel) }
+    private val validation: LoginValidation = LoginValidationImplementation(loginRepo)
+
 
     @Test
     fun `When username and password is entered and T&C is unchecked, Login API is not called`() {
 
         runBlocking {
-            val validation: LoginValidation = LoginValidationImplementation(loginRepo)
 
             with(ui) {
                 enterUsername("username")
@@ -32,8 +33,6 @@ class LoginViewModelTest {
     @Test
     fun `When username and password is entered and T&C is checked, Login API is called`() =
         runBlocking {
-            val validation: LoginValidation = LoginValidationImplementation(loginRepo)
-
             with(ui) {
                 enterUsername("username")
                 enterPassword("password")
@@ -49,8 +48,6 @@ class LoginViewModelTest {
     @Test
     fun `When username entered and password is empty and T&C is checked, Login API is not called`() =
         runBlocking {
-            val validation: LoginValidation = LoginValidationImplementation(loginRepo)
-
             with(ui) {
                 enterUsername("username")
                 enterPassword("")
@@ -66,8 +63,6 @@ class LoginViewModelTest {
     @Test
     fun `When username is entered and password is empty and T&C is checked, Login API is not called`() =
         runBlocking {
-            val validation: LoginValidation = LoginValidationImplementation(loginRepo)
-
             with(ui) {
                 enterUsername("username")
                 enterPassword("")
