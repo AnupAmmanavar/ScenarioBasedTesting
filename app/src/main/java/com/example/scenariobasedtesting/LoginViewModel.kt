@@ -43,4 +43,5 @@ class LoginViewModel(
 }
 
 // ViewModel changes
+// Conflicting changes
 // Another change
